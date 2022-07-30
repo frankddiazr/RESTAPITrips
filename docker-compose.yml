@@ -1,0 +1,28 @@
+version: '3.9'
+
+
+services:
+
+  apitrips:
+    build: .
+    ports:
+      - "8080:8080"
+    command: python ./jobsity/manage.py runserver 0.0.0.0:8080
+    volumes:
+      - .:/jobsity  
+    depends_on:
+      - db
+  db:
+    image: postgres
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    environment:
+      - "POSTGRES_HOST_AUTH_METHOD=trust"
+    build:
+      context: ./jobsity/db/
+    ports:
+      - '5431:5431'
+
+volumes:
+  postgres_data:
+  

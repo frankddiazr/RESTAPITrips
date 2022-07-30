@@ -1,0 +1,3 @@
+CREATE DATABASE postgress;
+CREATE USER postgress WITH ENCRYPTED PASSWORD 'password';
+GRANT ALL PRIVILEGES ON DATABASE postgress TO postgress;
